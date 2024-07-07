@@ -7,13 +7,13 @@ import sklearn
 import category_encoders as ce
 
 
-st.set_page_config(page_title="Viz Demo")
+st.set_page_config(page_title="Price Predictor")
 
 
-with open('data.pkl','rb') as file:
+with open('E:\HousePricePredictor\df.pkl','rb') as file:
     df = pickle.load(file)
 
-with open('model.pkl','rb') as file:
+with open('E:\HousePricePredictor\model.pkl','rb') as file:
     pipeline = pickle.load(file)
 
 
@@ -51,7 +51,7 @@ floor = float(st.number_input('Which floor'))
 if st.button('Predict'):
 
     # form a dataframe
-    data = [[property_type,Owner_type, bedrooms, furnish, facing,property_age,floor_num,built_up_area,balcony,floor,bedrooms,locality,luxury,swimming,1,1,1,1,1,1]]
+    data = [[property_type,owner_type, bedrooms, furnish, facing,property_age,floor_num,built_up_area,balcony,floor,bedrooms,locality,luxury,swimming,1,1,1,1,1,1]]
     columns = ['PROPERTY_TYPE',
                 'OWNTYPE',
                 'BEDROOM_NUM',
