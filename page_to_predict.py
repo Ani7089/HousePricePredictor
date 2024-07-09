@@ -22,30 +22,82 @@ st.header('Enter your inputs')
 
 # property_type
 property_type = st.selectbox('Property Type',sorted(df['PROPERTY_TYPE'].unique().tolist()))
-owner_type = st.selectbox('owner Type', sorted(df['OWNTYPE'].unique().tolist()))
+own = st.selectbox('owner Type', ['FreeHold','LeaseHold','Co-operative Society','Power of Attorney'])
+
+if own == 'FreeHold':
+    owner_type = 1
+elif own == 'LeaseHold':
+    owner_type = 2
+elif own == 'Co-operative Society':
+    owner_type = 3
+else:
+    owner_type = 4
 
 # sector
 locality = st.selectbox('location',sorted(df['LOCALITY'].unique().tolist()))
 
 bedrooms = float(st.selectbox('Number of Bedroom',sorted(df['BEDROOM_NUM'].unique().tolist())))
 
-facing = float(st.selectbox('Facing',sorted(df['FACING'].unique().tolist())))
+fac = st.selectbox('Facing',['No Preference',"North",'South','East','West','North-East','North-West','South-East','South-West'])
 
-balcony = st.selectbox('Balconies',sorted(df['BALCONY_NUM'].unique().tolist()))
+if fac == 'North':
+    facing = 1
+elif fac == 'South':
+    facing = 2
+elif fac == 'East':
+    facing = 3
+elif fac == 'West':
+    facing = 4
+elif fac == 'North-East':
+    facing = 5
+elif fac == 'North-West':
+    facing = 6
+elif fac == 'South-East':
+    facing = 7
+elif fac == 'South-West':
+    facing = 8
+else :
+    facing = 0
 
-property_age = st.selectbox('Property Age',sorted(df['AGE'].unique().tolist()))
+bal = st.selectbox('Balconies',['1','2','3','3+'])
+
+if bal == '1':
+    balcony = 1
+elif bal == '2':
+    balcony = 2
+elif bal == '3':
+    balcony = 3
+else:
+    balcony = 4
+
+property_age = float(st.number_input('Property Age'))
 
 built_up_area = float(st.number_input('Built Up Area'))
 
 floor_num = float(st.number_input('How many floors'))
 
-furnish = st.selectbox('Furnishing', sorted(df['FURNISH'].unique().tolist()))
+fur = st.selectbox('Furnishing', ['Furnished','SemiFurnished','Unfurnished'])
+
+if fur == 'Furnished':
+    furnish = 1
+elif fur == 'Unfurnished':
+    furnish = 2
+else:
+    furnish = 4
+
 
 luxury = st.selectbox('Luxuries', sorted(df['LUXURY'].unique().tolist()))
 
-swimming = st.selectbox('Swimming pool', sorted(df['SWIMMING_POOL'].unique().tolist()))
+sw = st.selectbox('Swimming pool', ['Yes', 'No'])
+if sw == 'Yes':
+    swimming = 1
+else :
+    swimming = 0
 
-floor = float(st.number_input('Which floor'))
+if property_type == 'Residential Apartment':
+    floor = float(st.number_input('FLOOR_NUM'))
+else :
+    floor = floor_num
 
 
 if st.button('Predict'):
